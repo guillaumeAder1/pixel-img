@@ -5,9 +5,10 @@
       <input 
         type="range" 
         min="1" 
-        max="10"
+        max="30"
         @input="updateValue" 
-        v-model="value">    
+        v-model="value">
+      {{ value * value }} cells
     </div>
   </div>
 </template>

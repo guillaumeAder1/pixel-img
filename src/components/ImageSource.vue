@@ -1,7 +1,9 @@
 <template>
   <div class="hello">
-    <img 
+    <img
+      class="source-img"
       width="100%"
+      height="100%"
       src="../assets/source1.jpg" />
   </div>
 </template>
@@ -17,6 +19,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.source-img{
+  object-fit: cover;
+}
 h3 {
   margin: 40px 0 0;
 }
