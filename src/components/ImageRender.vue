@@ -22,7 +22,9 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
+import { processImg } from '@/helpers/processing'
+
 export default {
   name: 'ImageRender',
   computed: {
@@ -30,11 +32,20 @@ export default {
       'numberCells'
     ]),
   },
-  // watch: {
-  //   numberCells(val, oldVal) {
-  //     console.log(typeof val)
-  //   }
-  // }
+  watch: {
+    numberCells(val, oldVal) {
+      console.log(typeof val)
+      const img = document.getElementById('sourceImg')
+      this.set_cellWidth(Math.floor(img.width / val))
+      this.set_cellHeight(Math.floor(img.height / val))
+    }
+  }, 
+  methods: {
+    ...mapMutations([
+      'set_cellWidth',
+      'set_cellHeight'
+    ])
+  }
 }
 </script>
 <style lang="scss">

@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <img
+      id="sourceImg"
       class="source-img"
       width="100%"
       height="100%"
