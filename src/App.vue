@@ -1,15 +1,6 @@
 <template>
   <div id="app">
-    <!-- <el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
-      open
-    </el-button>
-    <el-drawer
-        title="I am the title"
-        :visible.sync="drawer"
-        direction="rtl"
-        :before-close="handleClose">
-      <span>Hi, there!</span>
-    </el-drawer> -->
+  
     <ImageSource/>
     <ImageRender />
     <Settings />
@@ -17,7 +8,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import ImageSource from './components/ImageSource.vue'
 import ImageRender from './components/ImageRender.vue'
 import Settings from './components/Settings.vue'
@@ -37,14 +27,7 @@ export default {
     };
   },
   methods: {
-    handleClose(done) {
-      done()
-      this.$confirm('Are you sure you want to close this?')
-        .then(_ => {
-          done();
-        })
-        .catch(_ => {});
-    }
+
   }
 }
 </script>
