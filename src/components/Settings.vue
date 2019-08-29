@@ -63,12 +63,18 @@ export default {
       
       for (let i = 0 ; i < this.numberCells ; i ++) {
         for (let j = 0 ; j < this.numberCells ; j ++) {
-          let x = this.cellWidth * i // 0 // 
-          let y = this.cellHeight * j // 0
-          let destx = x + this.cellWidth // 75
-          let desty = y + this.cellHeight // 75
+          let x = this.cellWidth * i 
+          let y = this.cellHeight * j
+          let destx = x + this.cellWidth 
+          let desty = y + this.cellHeight 
+          console.log(x,y,destx, desty)
           res.push(canvas.getContext('2d').getImageData(x, y, destx, desty).data)
-          // console.log(x,y,destx, desty)
+          let c = document.createElement('canvas')
+          c.width =  75
+          c.height = 75
+          c.getContext('2d').drawImage(img,x, y, destx, desty)
+          document.body.appendChild(c)
+
         }
       }
       const colors = []
@@ -80,10 +86,10 @@ export default {
           a: 0
         }
         for (let j = 0 ; j < res[i].length; j += 4) {
-          obj.r = (obj.r + res[i][j]) 
-          obj.g = (obj.g + res[i][j+1])
-          obj.b = (obj.b + res[i][j+2])
-          obj.a = (obj.a + res[i][j+3])
+          obj.r += res[i][j]
+          obj.g += res[i][j+1]
+          obj.b += res[i][j+2]
+          obj.a += res[i][j+3]
         }
         colors.push(obj)
       }
