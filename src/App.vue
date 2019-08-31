@@ -1,15 +1,13 @@
 <template>
   <div id="app">
-  
     <ImageSource/>
-    <!-- <ImageRender /> -->
     <Settings />
+    
   </div>
 </template>
 
 <script>
 import ImageSource from './components/ImageSource.vue'
-import ImageRender from './components/ImageRender.vue'
 import Settings from './components/Settings.vue'
 
 
@@ -17,8 +15,7 @@ export default {
   name: 'app',
   components: {
     ImageSource,
-    Settings,
-    ImageRender
+    Settings
   },
   data() {
     return {
@@ -42,21 +39,19 @@ export default {
   margin-top: 60px;
   display: flex;
   margin: auto;
-  // flex: 0 0 100%;
   > div{
-    position:relative;
+    &.main{ position:relative; }
     flex: 0 0 48%;
     border: 1px solid grey;
     margin: 0 auto;
     img#sourceImg{
       float: left;
     }
-
     div.render{
-        position: absolute;
-        height: 100%;
-        width: 100%;
-      }
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
   }
 }
 

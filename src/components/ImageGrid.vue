@@ -26,7 +26,7 @@ import { mapGetters, mapMutations } from 'vuex'
 import { processImg } from '@/helpers/processing'
 
 export default {
-  name: 'ImageRender',
+  name: 'ImageGrid',
   computed: {
     ...mapGetters([
       'numberCells'

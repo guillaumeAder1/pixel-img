@@ -10,6 +10,8 @@
         v-model="value">
       {{ value * value }} cells
     </div>
+    <input type="file" @change="processFile($event)">
+
     <div>
       <button @click="process">process</button>
     </div>
@@ -20,6 +22,8 @@ import {
   mapGetters, 
   mapMutations 
 } from 'vuex'
+
+import { processImg } from '@/helpers/processing'
 export default {
   name: 'Settings',
   computed: {
@@ -27,22 +31,19 @@ export default {
       'numberCells',
       'cellWidth',
       'cellHeight'
-    ]),
-    // value: {
-    //   get() {
-    //     return this.numberCells
-    //   },
-    //   set(value) {
-    //     console.log(value)
-    //   }
-    // }
+    ])
   },
   data () {
     return {
-      value: this.$store.getters.numberCells
+      value: this.$store.getters.numberCells,
+      filePath: ''
     }
   },
   methods: {
+    processFile(event) {
+      this.filePath = event.target.files[0]
+      console.log(this.filePath)
+    },
     updateValue () {
       this.update(this.value)
     },
@@ -52,10 +53,10 @@ export default {
     process() {
       const img = document.getElementById('sourceImg')
       const canvas = document.createElement('canvas');
+      // processImg( img, canvas,  this.cellHeight, this.cellWidth)
       canvas.width = img.width;
       canvas.height = img.height;
       canvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height);
-      // document.body.appendChild(canvas)
       const res = []
       let c = document.createElement('canvas')
       c.width =  canvas.width
@@ -67,21 +68,13 @@ export default {
         for (let j = 0 ; j < this.numberCells ; j ++) {
           let x = this.cellWidth * i 
           let y = this.cellHeight * j
-          // let destx = x + this.cellWidth 
-          // let desty = y + this.cellHeight 
-          
-          let src = canvas.getContext('2d').getImageData(x, y, this.cellWidth, this.cellHeight)
-          res.push({
-            src:src.data, 
-            x, 
-            y
-          })
+          let src = canvas.getContext('2d').getImageData(x, y, this.cellWidth, this.cellHeight).data
+          res.push({src, x, y})
           // c.putImageData(src, x, y)
         }
       }
       // console.log(res)
       const colors = []
-
       const total = res[0].src.length
       for (let i = 0 ; i < res.length ; i ++) {
         const obj = { 
@@ -94,7 +87,6 @@ export default {
           obj.r += res[i].src[j]
           obj.g += res[i].src[j+1]
           obj.b += res[i].src[j+2]
-          obj.a += res[i].src[j+3]
         }
         const formated = Object.keys(obj).map(e => {
           return Math.floor(obj[e] / (total/4))
@@ -102,7 +94,7 @@ export default {
         colors.push(formated)
       }
       for(let i in colors) {
-        c.fillStyle = `rgb(${colors[i][0]}, ${colors[i][1]}, ${colors[i][1]})`
+        c.fillStyle = `rgb(${colors[i][0]}, ${colors[i][1]}, ${colors[i][2]})`
         c.fillRect(res[i].x, res[i].y, this.cellWidth, this.cellHeight)
       }
     }

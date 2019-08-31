@@ -1,4 +1,4 @@
 
-export const processImg = (img, pxHeight, pxWidth) => {
+export const processImg = (img, canvas, cellHeight, cellWidth) => {
 
 }
