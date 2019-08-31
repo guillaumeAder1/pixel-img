@@ -8,12 +8,16 @@ export default new Vuex.Store({
   getters: {
     numberCells: state => state.numberCells,
     cellWidth: state => state.cellWidth,
-    cellHeight: state => state.cellHeight
+    cellHeight: state => state.cellHeight,
+    colorData: state => state.colorData,
+    renderers: state => state.renderers
   },
   state: {
     numberCells: 2,
     cellWidth: 0,
-    cellHeight: 0
+    cellHeight: 0,
+    colorData: [],
+    renderers: []
   },
   mutations: {
     UPDATE_CELL_NUMBER (state, payload) {
@@ -24,6 +28,13 @@ export default new Vuex.Store({
     },
     set_cellHeight (state, payload) {
       state.cellHeight = payload
+    },
+    SET_COLOR_DATA (state, payload) {
+      state.colorData = payload
+      state.renderers.push(payload)
+    },
+    ADD_RENDER(state, payload) {
+      state.renderers.push(payload)
     }
   },
   actions: {

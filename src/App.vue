@@ -2,29 +2,36 @@
   <div id="app">
     <ImageSource/>
     <Settings />
-    
+    <Render 
+      v-for="(render, index) in renderers" 
+      :key="index"
+      :colors="render" />
   </div>
 </template>
 
 <script>
-import ImageSource from './components/ImageSource.vue'
-import Settings from './components/Settings.vue'
-
+import ImageSource from '@/components/ImageSource.vue'
+import Settings from '@/components/Settings.vue'
+import Render from '@/components/Render.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'app',
   components: {
     ImageSource,
-    Settings
+    Settings,
+    Render
+  },
+  computed: {
+    ...mapGetters([
+      'renderers'
+    ])
   },
   data() {
     return {
       drawer: false,
       direction: 'rtl',
     };
-  },
-  methods: {
-
   }
 }
 </script>
