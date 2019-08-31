@@ -69,17 +69,22 @@ export default {
           let y = this.cellHeight * j
           let destx = x + this.cellWidth 
           let desty = y + this.cellHeight 
-          // res.push(canvas.getContext('2d').getImageData(x, y, destx, desty).data)
 
-          console.log(x,y,destx, desty)
-         
-          // c.getContext('2d').drawImage(img,x, y, destx, desty,x, y, destx, desty)
+          // console.log(x,y,destx, desty)
+        
           let src = canvas.getContext('2d').getImageData(x, y, this.cellWidth, this.cellHeight)
-          c.putImageData(src, x, y)
-
+          res.push({
+            src:src.data, 
+            x, 
+            y
+          })
+          // c.putImageData(src, x, y)
         }
       }
+      // console.log(res)
       const colors = []
+
+      const total = res[0].src.length
       for (let i = 0 ; i < res.length ; i ++) {
         const obj = { 
           r: 0, 
@@ -87,21 +92,21 @@ export default {
           b: 0,
           a: 0
         }
-        for (let j = 0 ; j < res[i].length; j += 4) {
-          obj.r += res[i][j]
-          obj.g += res[i][j+1]
-          obj.b += res[i][j+2]
-          obj.a += res[i][j+3]
+        for (let j = 0 ; j < res[i].src.length; j += 4) {
+          obj.r += res[i].src[j]
+          obj.g += res[i].src[j+1]
+          obj.b += res[i].src[j+2]
+          obj.a += res[i].src[j+3]
         }
-        colors.push(obj)
+        const formated = Object.keys(obj).map(e => {
+          return Math.floor(obj[e] / (total/4))
+        })
+        colors.push(formated)
       }
-      // const avg = res.map(el => {
-      //   const sum = el.reduce((acc, val) => acc + val, 0) / el.length
-      //   return sum
-      // })
-      const pixel = canvas.getContext('2d').getImageData(0, 0, 1, 1)
-      console.log(pixel)
-
+      for(let i in colors) {
+        c.fillStyle = `rgb(${colors[i][0]}, ${colors[i][1]}, ${colors[i][1]})`
+        c.fillRect(res[i].x, res[i].y, this.cellWidth, this.cellHeight)
+      }
     }
   }
 }
