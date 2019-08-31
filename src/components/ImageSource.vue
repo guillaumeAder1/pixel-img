@@ -5,7 +5,7 @@
       class="source-img"
       width="100%"
       height="100%"
-      src="../assets/simple.jpg" />
+      src="../assets/josh.jpg" />
   </div>
 </template>
 
