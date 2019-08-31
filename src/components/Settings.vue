@@ -55,10 +55,7 @@ export default {
       canvas.width = img.width;
       canvas.height = img.height;
       canvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height);
-      document.body.appendChild(canvas)
-      //process(canvas, )
-      // this.cellWidth = 75
-      // this.cellHeight = 75
+      // document.body.appendChild(canvas)
       const res = []
       let c = document.createElement('canvas')
       c.width =  canvas.width
