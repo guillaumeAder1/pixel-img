@@ -2,7 +2,7 @@
   <div id="app">
   
     <ImageSource/>
-    <ImageRender />
+    <!-- <ImageRender /> -->
     <Settings />
   </div>
 </template>
@@ -44,9 +44,19 @@ export default {
   margin: auto;
   // flex: 0 0 100%;
   > div{
-    flex: 0 0 32%;
+    position:relative;
+    flex: 0 0 48%;
     border: 1px solid grey;
     margin: 0 auto;
+    img#sourceImg{
+      float: left;
+    }
+
+    div.render{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+      }
   }
 }
 

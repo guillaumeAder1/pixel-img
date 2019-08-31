@@ -67,11 +67,9 @@ export default {
         for (let j = 0 ; j < this.numberCells ; j ++) {
           let x = this.cellWidth * i 
           let y = this.cellHeight * j
-          let destx = x + this.cellWidth 
-          let desty = y + this.cellHeight 
-
-          // console.log(x,y,destx, desty)
-        
+          // let destx = x + this.cellWidth 
+          // let desty = y + this.cellHeight 
+          
           let src = canvas.getContext('2d').getImageData(x, y, this.cellWidth, this.cellHeight)
           res.push({
             src:src.data, 
