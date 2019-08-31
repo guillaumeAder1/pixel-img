@@ -25,8 +25,8 @@ export default {
   computed: {
     ...mapGetters([
       'numberCells',
-      // 'cellWidth',
-      // 'cellHeight'
+      'cellWidth',
+      'cellHeight'
     ]),
     // value: {
     //   get() {
@@ -57,8 +57,8 @@ export default {
       canvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height);
       document.body.appendChild(canvas)
       //process(canvas, )
-      this.cellWidth = 75
-      this.cellHeight = 75
+      // this.cellWidth = 75
+      // this.cellHeight = 75
       const res = []
       let c = document.createElement('canvas')
       c.width =  canvas.width
