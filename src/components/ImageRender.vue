@@ -33,7 +33,7 @@ export default {
     ]),
   },
   watch: {
-    numberCells(val, oldVal) {
+    numberCells(val) {
       console.log(typeof val)
       const img = document.getElementById('sourceImg')
       this.set_cellWidth(Math.floor(img.width / val))

@@ -60,20 +60,25 @@ export default {
       this.cellWidth = 75
       this.cellHeight = 75
       const res = []
-      
+      let c = document.createElement('canvas')
+      c.width =  canvas.width
+      c.height = canvas.height
+      document.body.appendChild(c)
+      c = c.getContext('2d')
+
       for (let i = 0 ; i < this.numberCells ; i ++) {
         for (let j = 0 ; j < this.numberCells ; j ++) {
           let x = this.cellWidth * i 
           let y = this.cellHeight * j
           let destx = x + this.cellWidth 
           let desty = y + this.cellHeight 
+          // res.push(canvas.getContext('2d').getImageData(x, y, destx, desty).data)
+
           console.log(x,y,destx, desty)
-          res.push(canvas.getContext('2d').getImageData(x, y, destx, desty).data)
-          let c = document.createElement('canvas')
-          c.width =  75
-          c.height = 75
-          c.getContext('2d').drawImage(img,x, y, destx, desty)
-          document.body.appendChild(c)
+         
+          // c.getContext('2d').drawImage(img,x, y, destx, desty,x, y, destx, desty)
+          let src = canvas.getContext('2d').getImageData(x, y, this.cellWidth, this.cellHeight)
+          c.putImageData(src, x, y)
 
         }
       }
