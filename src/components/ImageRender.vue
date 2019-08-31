@@ -33,11 +33,13 @@ export default {
     ]),
   },
   watch: {
-    numberCells(val) {
-      console.log(typeof val)
-      const img = document.getElementById('sourceImg')
-      this.set_cellWidth(Math.floor(img.width / val))
-      this.set_cellHeight(Math.floor(img.height / val))
+    numberCells: {
+      immediate: true,
+      handler(val) {
+        const img = document.getElementById('sourceImg')
+        this.set_cellWidth(Math.floor(img.width / val))
+        this.set_cellHeight(Math.floor(img.height / val))
+      }
     }
   }, 
   methods: {
