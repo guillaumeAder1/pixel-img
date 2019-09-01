@@ -32,10 +32,10 @@ export const processImg = (img, canvas, cellHeight, cellWidth, numberCells) => {
       obj.g += res[i].src[j+1]
       obj.b += res[i].src[j+2]
     }
-    const formated = Object.keys(obj).map(e => {
+    const formated = Object.keys(obj).map((e) => {
       return Math.floor(obj[e] / (total/4))
     })
-    colors.push(formated)
+    colors.push({...formated, x: res[i].x, y: res[i].y })
   }
-  return colors
+  return { colors, res }
 }

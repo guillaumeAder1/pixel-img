@@ -54,7 +54,8 @@ export default {
     process() {
       const img = document.getElementById('sourceImg')
       const canvas = document.createElement('canvas');
-      this.setColorData(processImg( img, canvas,  this.cellHeight, this.cellWidth, this.numberCells))
+      const { colors, res } = processImg( img, canvas,  this.cellHeight, this.cellWidth, this.numberCells)
+      this.setColorData(colors)
      
       // for(let i in colors) {
       //   c.fillStyle = `rgb(${colors[i][0]}, ${colors[i][1]}, ${colors[i][2]})`
