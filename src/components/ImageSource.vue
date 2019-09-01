@@ -7,12 +7,13 @@
       width="100%"
       height="100%"
       @load="imgReady = true"
-      src="../assets/josh.jpg" />
+      :src="imgSource || '../img/simple.jpg'" />
     <ImageGrid v-if="imgReady"/>
   </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 import ImageGrid from '@/components/ImageGrid'
 export default {
   components: {
@@ -21,6 +22,11 @@ export default {
   name: 'ImageSource',
   props: {
     msg: String
+  },
+  computed: {
+    ...mapGetters([
+      'imgSource'
+    ])
   },
   data () {
     return {

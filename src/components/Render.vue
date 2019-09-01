@@ -1,6 +1,10 @@
 <template>
   <div>
-    <canvas id='render-canvas' ref="canvas" />
+    <canvas 
+      id='render-canvas' 
+      :width="numberCells * cellWidth"
+      :height="numberCells * cellHeight"
+      ref="canvas" />
   </div>
 </template>
 <script>
@@ -13,7 +17,8 @@ export default {
   computed: {
     ...mapGetters([
       'cellWidth',
-      'cellHeight'
+      'cellHeight',
+      'numberCells'
     ])
   },
   mounted() {

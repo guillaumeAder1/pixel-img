@@ -42,6 +42,11 @@ export default {
   methods: {
     processFile(event) {
       this.filePath = event.target.files[0]
+      const reader = new FileReader()
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (e) => {
+        this.setImageSource(e.target.result)
+      }
       console.log(this.filePath)
     },
     updateValue () {
@@ -49,7 +54,8 @@ export default {
     },
     ...mapMutations({
       update: 'UPDATE_CELL_NUMBER',
-      setColorData: 'SET_COLOR_DATA'
+      setColorData: 'SET_COLOR_DATA',
+      setImageSource: 'SET_IMG_SOURCE'
     }),
     process() {
       const img = document.getElementById('sourceImg')

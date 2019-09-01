@@ -10,14 +10,16 @@ export default new Vuex.Store({
     cellWidth: state => state.cellWidth,
     cellHeight: state => state.cellHeight,
     colorData: state => state.colorData,
-    renderers: state => state.renderers
+    renderers: state => state.renderers,
+    imgSource: state => state.imgSource
   },
   state: {
     numberCells: 2,
     cellWidth: 0,
     cellHeight: 0,
     colorData: [],
-    renderers: []
+    renderers: [],
+    imgSource: ''
   },
   mutations: {
     UPDATE_CELL_NUMBER (state, payload) {
@@ -35,6 +37,9 @@ export default new Vuex.Store({
     },
     ADD_RENDER(state, payload) {
       state.renderers.push(payload)
+    },
+    SET_IMG_SOURCE(state, payload) {
+      state.imgSource = payload
     }
   },
   actions: {
