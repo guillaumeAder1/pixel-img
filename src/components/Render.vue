@@ -1,7 +1,6 @@
 <template>
   <div>
     <canvas 
-      id='render-canvas' 
       :width="numberCells * cellWidth"
       :height="numberCells * cellHeight"
       ref="canvas" />
@@ -24,7 +23,7 @@ export default {
   mounted() {
     // this.refs.canvas.
     for(let i in this.colors) {
-      this.$refs.canvas.getContext('2d').fillStyle = `rgb(${this.colors[i][0]}, ${this.colors[i][1]}, ${this.colors[i][2]})`
+      this.$refs.canvas.getContext('2d').fillStyle = `rgba(${this.colors[i][0]}, ${this.colors[i][1]}, ${this.colors[i][2]},  ${this.colors[i][3]})`
       this.$refs.canvas.getContext('2d').fillRect(this.colors[i].x, this.colors[i].y, this.cellWidth, this.cellHeight)
     }
   }

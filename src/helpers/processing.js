@@ -31,6 +31,7 @@ export const processImg = (img, canvas, cellHeight, cellWidth, numberCells) => {
       obj.r += res[i].src[j]
       obj.g += res[i].src[j+1]
       obj.b += res[i].src[j+2]
+      obj.a += res[i].src[j+3]
     }
     const formated = Object.keys(obj).map((e) => {
       return Math.floor(obj[e] / (total/4))
