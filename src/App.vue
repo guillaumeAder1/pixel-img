@@ -60,16 +60,15 @@ export default {
     top: 0;
   }
   div.container{
-    // display: flex;
-    // flex-direction: row;
-    border: 1px solid red;
+    // border: 1px solid red;
+    margin: 15px;
     flex: 1;
-
+    background: rgb(242, 242, 242);
+    padding: 15px;
     &.controls{
       display: flex;
       > div {
         flex: 1;
-
       }
       div.imageSource{
         flex: 0 0 250px;
