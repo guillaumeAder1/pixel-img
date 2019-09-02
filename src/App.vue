@@ -4,10 +4,11 @@
       <ImageSource/>
       <Settings />
     </div>
-    <div class="container">
-      <Render 
-        v-for="(render, index) in renderers" 
-        :key="index"
+    <div 
+      class="container"
+      v-for="(render, index) in renderers" 
+      :key="index">
+      <Render       
         :colors="render" />
     </div>
   </div>
