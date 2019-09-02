@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="imageSource">
     <img
       ref="img"
       id="sourceImg"
@@ -7,7 +7,7 @@
       width="100%"
       height="100%"
       @load="imgReady = true"
-      :src="imgSource || '../img/simple.jpg'" />
+      :src="imgSource || '/img/icons/simple.jpg'" />
     <ImageGrid v-if="imgReady"/>
   </div>
 </template>

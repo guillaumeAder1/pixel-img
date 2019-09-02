@@ -1,5 +1,5 @@
 <template>
-  <div class="render">
+  <div class="imageGrid">
     <div 
       class="pixel"
       :style="{ 
@@ -51,7 +51,7 @@ export default {
 }
 </script>
 <style lang="scss">
-.render{
+.imageGrid{
   .pixel{
     &-red{
       box-shadow:0px 0px 0px 0.1px black inset;

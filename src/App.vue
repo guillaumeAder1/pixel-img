@@ -1,11 +1,15 @@
 <template>
   <div id="app">
-    <ImageSource/>
-    <Settings />
-    <Render 
-      v-for="(render, index) in renderers" 
-      :key="index"
-      :colors="render" />
+    <div class="container controls">
+      <ImageSource/>
+      <Settings />
+    </div>
+    <div class="container">
+      <Render 
+        v-for="(render, index) in renderers" 
+        :key="index"
+        :colors="render" />
+    </div>
   </div>
 </template>
 
@@ -45,21 +49,50 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
   display: flex;
+  flex-direction: column;
+  flex: 1;
   margin: auto;
-  > div{
-    &.main{ position:relative; }
-    flex: 0 0 48%;
-    border: 1px solid grey;
-    margin: 0 auto;
-    img#sourceImg{
-      float: left;
-    }
-    div.render{
-      position: absolute;
-      height: 100%;
-      width: 100%;
-    }
+  .imageSource{ position: relative; }
+  .imageGrid {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
   }
+  div.container{
+    // display: flex;
+    // flex-direction: row;
+    border: 1px solid red;
+    flex: 1;
+
+    &.controls{
+      display: flex;
+      > div {
+        flex: 1;
+
+      }
+      div.imageSource{
+        flex: 0 0 250px;
+      }
+    }
+  } 
+ 
+  
+
+  // > div{
+  //   &.main{ position:relative; }
+  //   flex: 0 0 48%;
+  //   border: 1px solid grey;
+  //   margin: 0 auto;
+  //   img#sourceImg{
+  //     float: left;
+  //   }
+  //   div.render{
+  //     position: absolute;
+  //     height: 100%;
+  //     width: 100%;
+  //   }
+  // }
 }
 
 </style>

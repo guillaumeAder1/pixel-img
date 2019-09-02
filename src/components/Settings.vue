@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="settings">
     Settings
     <div>
       <input 
@@ -60,7 +60,7 @@ export default {
     process() {
       const img = document.getElementById('sourceImg')
       const canvas = document.createElement('canvas');
-      const { colors, res } = processImg( img, canvas,  this.cellHeight, this.cellWidth, this.numberCells)
+      const { colors, res } = processImg( img, canvas, this.cellHeight, this.cellWidth, this.numberCells)
       this.setColorData(colors)
      
       // for(let i in colors) {
