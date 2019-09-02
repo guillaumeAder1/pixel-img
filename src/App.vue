@@ -30,7 +30,10 @@ export default {
   computed: {
     ...mapGetters([
       'renderers'
-    ])
+    ]),
+    renderersReversed() {
+      return this.renderers.reverse()
+    }
   },
   data() {
     return {
@@ -65,6 +68,7 @@ export default {
     margin: 15px;
     flex: 1;
     background: rgb(242, 242, 242);
+    border:1px solid  rgb(223, 223, 223);
     padding: 15px;
     &.controls{
       display: flex;
@@ -76,6 +80,9 @@ export default {
       }
     }
   } 
+  canvas{
+    border:1px solid  rgb(126, 126, 126);
+  }
  
   
 
