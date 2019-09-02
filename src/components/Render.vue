@@ -2,8 +2,8 @@
   <div>
     <canvas 
       id='render-canvas' 
-      :width="numberCells * cellWidth"
-      :height="numberCells * cellHeight"
+      :width="this.data.width"
+      :height="this.data.height"
       ref="canvas" />
   </div>
 </template>
@@ -12,7 +12,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Render',
   props: {
-    colors: Array
+    data: Object
   },
   computed: {
     ...mapGetters([
@@ -23,9 +23,9 @@ export default {
   },
   mounted() {
     // this.refs.canvas.
-    for(let i in this.colors) {
-      this.$refs.canvas.getContext('2d').fillStyle = `rgb(${this.colors[i][0]}, ${this.colors[i][1]}, ${this.colors[i][2]})`
-      this.$refs.canvas.getContext('2d').fillRect(this.colors[i].x, this.colors[i].y, this.cellWidth, this.cellHeight)
+    for(let i in this.data.colors) {
+      this.$refs.canvas.getContext('2d').fillStyle = `rgb(${this.data.colors[i][0]}, ${this.data.colors[i][1]}, ${this.data.colors[i][2]})`
+      this.$refs.canvas.getContext('2d').fillRect(this.data.colors[i].x, this.data.colors[i].y, this.cellWidth, this.cellHeight)
     }
   }
 }

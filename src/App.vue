@@ -9,7 +9,7 @@
       v-for="(render, index) in renderers" 
       :key="index">
       <Render       
-        :colors="render" />
+        :data="render"/>
     </div>
   </div>
 </template>

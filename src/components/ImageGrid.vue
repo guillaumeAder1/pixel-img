@@ -23,7 +23,6 @@
 </template>
 <script>
 import { mapGetters, mapMutations } from 'vuex'
-import { processImg } from '@/helpers/processing'
 
 export default {
   name: 'ImageGrid',
