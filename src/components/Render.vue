@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     download () {
-      const data = this.$refs.canvas.toDataURL('image/png')
+      const data = this.$refs.canvas.toDataURL('image/jpg')
       this.$refs.btn.href = data
     }
   }
