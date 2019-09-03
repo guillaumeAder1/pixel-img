@@ -1,6 +1,11 @@
 <template>
   <div id="app">
     <RenderContainer />
+    <div v-for="(item, index) in list" :key="index">
+      {{ item }}
+      <button @click="UPDATE_LIST_ITEM({ val: 'ok', ...item })"> update </button>
+    </div>
+    <button @click="ADD_LIST({id: getIdx(), name: 'ajsdfha'})">ADD</button>
     <!-- <div class="container controls">
       <ImageSource/>
       <Settings />
@@ -20,7 +25,7 @@
 // import Settings from '@/components/Settings.vue'
 // import Render from '@/components/Render.vue'
 import RenderContainer from '@/components/RenderContainer.vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'app',
@@ -29,16 +34,31 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'renderers'
+      'renderers', 
+      'list'
     ]),
     renderersReversed() {
       return this.renderers.reverse()
+    }
+  },
+  methods: {
+    ...mapMutations([
+      'ADD_LIST',
+      'UPDATE_NAME'
+    ]),
+    ...mapActions([
+      'UPDATE_LIST_ITEM'
+    ]),
+    getIdx() {
+      this.idx += 1
+      return this.idx
     }
   },
   data() {
     return {
       drawer: false,
       direction: 'rtl',
+      idx:1
     };
   }
 }

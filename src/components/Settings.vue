@@ -87,7 +87,7 @@ export default {
     padding: 5px 0;
   }
 
-   input[type=range] {
+  input[type=range] {
     // transform-origin: left;
     // transform: rotate(90deg);
   }

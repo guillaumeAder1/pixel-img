@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { stat } from 'fs';
 
 Vue.use(Vuex)
 
@@ -10,7 +11,9 @@ export default new Vuex.Store({
     cellHeight: state => state.cellHeight,
     colorData: state => state.colorData,
     renderers: state => state.renderers,
-    imgSource: state => state.imgSource
+    imgSource: state => state.imgSource,
+    list: state => state.list,
+    listSelectorId: state => id => state.list.filter(e => e.id === id)
   },
   state: {
     numberCells: 2,
@@ -18,9 +21,16 @@ export default new Vuex.Store({
     cellHeight: 0,
     colorData: [],
     renderers: [],
-    imgSource: ''
+    imgSource: '',
+    list: []
   },
   mutations: {
+    ADD_LIST (state, payload) {
+      state.list.push(payload)
+    },
+    UPDATE_NAME (state, payload) {
+      payload.current[0].name  = payload.data.val
+    },
     UPDATE_CELL_NUMBER (state, payload) {
       state.numberCells = payload
     },
@@ -42,6 +52,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
-
+    UPDATE_LIST_ITEM ({getters, commit}, payload) {
+      console.log(getters)
+      const current = getters.listSelectorId(payload.id)
+      commit('UPDATE_NAME', { data: payload, current})
+    }
   }
 })
