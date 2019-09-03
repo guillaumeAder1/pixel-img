@@ -1,6 +1,5 @@
 <template>
-  <div class="settings">
-    Settings
+  <div class="settings">    
     <div>
       <input 
         type="range" 
@@ -10,8 +9,9 @@
         v-model="value">
       {{ value * value }} cells
     </div>
-    <input type="file" @change="processFile($event)">
-
+    <div>
+      <input type="file" @change="processFile($event)">
+    </div>
     <div>
       <button @click="process">process</button>
     </div>
@@ -75,3 +75,23 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.settings{
+  display: flex;
+  flex: 0 0 25%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0 20px;
+  > div {
+    padding: 5px 0;
+  }
+
+   input[type=range] {
+    // transform-origin: left;
+    // transform: rotate(90deg);
+  }
+}
+
+
+</style>

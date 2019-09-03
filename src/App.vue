@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <div class="container controls">
+    <RenderContainer />
+    <!-- <div class="container controls">
       <ImageSource/>
       <Settings />
     </div>
@@ -10,22 +11,21 @@
       :key="index">
       <Render       
         :data="render"/>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import ImageSource from '@/components/ImageSource.vue'
-import Settings from '@/components/Settings.vue'
-import Render from '@/components/Render.vue'
+// import ImageSource from '@/components/ImageSource.vue'
+// import Settings from '@/components/Settings.vue'
+// import Render from '@/components/Render.vue'
+import RenderContainer from '@/components/RenderContainer.vue'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'app',
   components: {
-    ImageSource,
-    Settings,
-    Render
+    RenderContainer
   },
   computed: {
     ...mapGetters([
@@ -56,33 +56,8 @@ export default {
   flex-direction: column;
   flex: 1;
   margin: auto;
-  .imageSource{ position: relative; }
-  .imageGrid {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-  }
-  div.container{
-    // border: 1px solid red;
-    margin: 15px;
-    flex: 1;
-    background: rgb(242, 242, 242);
-    border:1px solid  rgb(223, 223, 223);
-    padding: 15px;
-    &.controls{
-      display: flex;
-      > div {
-        flex: 1;
-      }
-      div.imageSource{
-        flex: 0 0 250px;
-      }
-    }
-  } 
-  canvas{
-    border:1px solid  rgb(126, 126, 126);
-  }
+  
+  
  
   
 
