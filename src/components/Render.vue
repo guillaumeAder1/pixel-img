@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="el">
     <canvas 
       :width="this.data.width"
       :height="this.data.height"
@@ -34,11 +34,22 @@ export default {
 }
 </script>
 <style lang="scss">
-
+.el{
+  position: relative;
+  &:hover{
+    a {
+      display: block;
+    }
+  }
+}
 a.download-btn{
+  cursor: pointer;
+  display: none;
   position: absolute;
+  bottom: 0;
+  background: white;
+  padding: 5px;
+  margin: 0 auto;
 }
-.btn{
-  // border: 1px solid grey;
-}
+
 </style>
