@@ -16,13 +16,13 @@
       @onImageSourceUpdate="updateImageSource"
       @onProcess="process"
       />
-    <!-- <template v-if="renderList.length"> -->
+    <div class="render-container">
       <Render 
         v-for="(render, index) in renderList"
         :key="index"
         :data="render"
       />
-    <!-- </template> -->
+    </div>
   </div>
 </template>
 <script>
@@ -104,15 +104,18 @@ export default {
     padding: 15px;
     &.controls{
       display: flex;
-      > div {
-        // flex: 1;
-      }
       div.imageSource{
         flex: 0 0 250px;
       }
     }
-    canvas{
-      border:1px solid  rgb(126, 126, 126);
-    }
+   .render-container {   
+      display: flex;
+      flex-direction: row;
+      
+      div{
+        display: flex;
+        margin: 0 5px;
+      }
+    } 
   } 
 </style>

@@ -4,7 +4,7 @@
       :width="this.data.width"
       :height="this.data.height"
       ref="canvas" />
-      <a ref="btn" @click="download" download="img.png">download</a>
+      <a class="download-btn" ref="btn" @click="download" download="img.png">download</a>
   </div>
 </template>
 <script>
@@ -14,8 +14,8 @@ export default {
     data: Object
   },
   computed: {
-    cellWidth() { return Math.floor(this.data.width / this.data.nbrCells)},
-    cellHeight() { return Math.floor(this.data.height / this.data.nbrCells)}
+    cellWidth() { return this.data.width / this.data.nbrCells},
+    cellHeight() { return this.data.height / this.data.nbrCells}
   },
   mounted() {
     // this.refs.canvas.
@@ -33,8 +33,12 @@ export default {
   }
 }
 </script>
-<style>
+<style lang="scss">
+
+a.download-btn{
+  position: absolute;
+}
 .btn{
-  border: 1px solid grey;
+  // border: 1px solid grey;
 }
 </style>
