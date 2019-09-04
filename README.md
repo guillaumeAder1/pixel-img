@@ -1,5 +1,7 @@
 # pixel-img
 
+[see demo](https://guillaumeader1.github.io/pixel-img/)
+
 ## Project setup
 ```
 npm install
