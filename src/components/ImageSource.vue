@@ -6,7 +6,7 @@
     class="source-img"
     width="100%"
     height="100%"
-    @load="imgReady = true"
+    @load="loaded"
     :src="imgSource || '/img/icons/simple.jpg'" />
   
 </template>
@@ -22,6 +22,11 @@ export default {
     return {
       img: this.$refs.img,
       imgReady: false
+    }
+  },
+  methods: {
+    loaded() {
+      this.$emit('onImageLoaded')
     }
   }
 }

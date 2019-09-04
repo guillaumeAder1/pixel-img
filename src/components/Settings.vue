@@ -24,7 +24,6 @@ import {
   mapActions
 } from 'vuex'
 
-import { processImg } from '@/helpers/processing'
 export default {
   name: 'Settings',
   computed: {
@@ -51,15 +50,7 @@ export default {
       this.$emit('onSliderUpdate', parseInt(this.value))
     },
     process() {
-      const img = document.getElementById('sourceImg')
-      const canvas = document.createElement('canvas');
-      const { colors } = processImg(img, canvas, this.cellHeight, this.cellWidth, this.numberCells)
-      this.ADD_NEW_RENDER(colors)
-      this.setColorData({
-        colors, 
-        width: this.cellWidth * this.numberCells, 
-        height: this.cellHeight * this.numberCells 
-      })
+      this.$emit('onProcess')
     }
   }
 }

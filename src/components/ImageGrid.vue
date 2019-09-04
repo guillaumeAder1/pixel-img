@@ -1,5 +1,5 @@
 <template>
-  <div class="imageGrid">
+  <div ref="gridDom" class="imageGrid">
     <div 
       class="pixel"
       :style="{ 
@@ -26,34 +26,18 @@ import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'ImageGrid',
-  data () {
-    return {
-      cellwidth: 0,
-      cellHeight: 0
-    }
-  },
   props: {
     nbrCells: {
       type: Number,
       required: true
     }
   },
-  watch: {
-    numberCells: {
-      immediate: true,
-      handler(val) {
-        
-        // const img = document.getElementById('sourceImg')
-        // this.set_cellWidth(Math.floor(img.width / val))
-        // this.set_cellHeight(Math.floor(img.height / val))
-      }
-    }
-  }, 
-  methods: {
-    ...mapMutations([
-      'set_cellWidth',
-      'set_cellHeight'
-    ])
+  computed: {
+    cellWidth() { return this.$refs.gridDom.clientWidth / this.nbrCells  },
+    cellHeight() { return this.$refs.gridDom.clientHeight / this.nbrCells  }
+  },
+  mounted() {
+    console.log(this.cellWidth)
   }
 }
 </script>

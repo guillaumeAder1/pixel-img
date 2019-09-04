@@ -1,17 +1,32 @@
 <template>
   <div class="container controls">
     <div class="imageSource">
-      <ImageSource :imgSource="srcImg" />
-      <ImageGrid  :nbrCells="nbrCells" />
+      <ImageSource 
+        :imgSource="srcImg"
+        ref="srcCanvas"
+        @onImageLoaded="onImageLoaded"
+        />
+      <ImageGrid 
+        v-if="imgLoaded" 
+        :nbrCells="nbrCells" 
+        ref="grid"/>
     </div>
     <Settings  
       @onSliderUpdate="updateSlider" 
       @onImageSourceUpdate="updateImageSource"
+      @onProcess="process"
       />
-    <Render/>
+    <!-- <template v-if="renderList.length"> -->
+      <Render 
+        v-for="(render, index) in renderList"
+        :key="index"
+        :data="render"
+      />
+    <!-- </template> -->
   </div>
 </template>
 <script>
+import { processImg } from '@/helpers/processing'
 import ImageSource from '@/components/ImageSource'
 import ImageGrid from '@/components/ImageGrid'
 import Settings from '@/components/Settings'
@@ -33,7 +48,10 @@ export default {
   data () {
     return {
       nbrCells: 4,
-      srcImg: ''
+      srcImg: '',
+      srcCanvas: '',
+      imgLoaded: false,
+      renderList: []
     }
   },
   computed: {
@@ -47,6 +65,21 @@ export default {
     },
     updateImageSource (path) {
       this.srcImg = path
+    },
+    onImageLoaded () {
+      this.imgLoaded = true
+    },
+    process () {
+      const img = this.$refs.srcCanvas.$refs.img
+      const canvas = document.createElement('canvas');
+      const { colors } = processImg(img, canvas, this.nbrCells)
+      this.renderList.push({
+        colors,
+        width: img.width, 
+        height: img.height,
+        nbrCells: this.nbrCells
+      })
+
     }
   },
   name: 'RenderContainer'
