@@ -1,21 +1,53 @@
 <template>
   <div class="container controls">
-    <ImageSource />
-    <Settings />
-    <Render />
+    <div class="imageSource">
+      <ImageSource :imgSource="srcImg" />
+      <ImageGrid  :nbrCells="nbrCells" />
+    </div>
+    <Settings  
+      @onSliderUpdate="updateSlider" 
+      @onImageSourceUpdate="updateImageSource"
+      />
+    <Render/>
   </div>
 </template>
 <script>
-// import ImageGrid from '@/src/components/ImageGrid'
 import ImageSource from '@/components/ImageSource'
+import ImageGrid from '@/components/ImageGrid'
 import Settings from '@/components/Settings'
 import Render from '@/components/Render'
+import { mapGetters } from 'vuex'
 export default {
   components: {
-    // ImageGrid,
     Settings,
     ImageSource,
+    ImageGrid,
     Render
+  },
+  props: {
+    itemid: {
+      type: Number,
+      required: true
+    }
+  },
+  data () {
+    return {
+      nbrCells: 4,
+      srcImg: ''
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'selectImg'
+    ])
+  },
+  methods: {
+    updateSlider (val) {
+      this.nbrCells = val
+    },
+    updateImageSource (path) {
+      this.srcImg = path
+    }
   },
   name: 'RenderContainer'
 }

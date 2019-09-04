@@ -4,6 +4,7 @@ import { stat } from 'fs';
 
 Vue.use(Vuex)
 
+
 export default new Vuex.Store({
   getters: {
     numberCells: state => state.numberCells,
@@ -13,7 +14,9 @@ export default new Vuex.Store({
     renderers: state => state.renderers,
     imgSource: state => state.imgSource,
     list: state => state.list,
-    listSelectorId: state => id => state.list.filter(e => e.id === id)
+    listSelectorId: state => id => state.list.filter(e => e.id === id),
+    imgList: state => state.imgList,
+    selectImg: state => id => state.imgList.filter(e => e.id === id)
   },
   state: {
     numberCells: 2,
@@ -22,9 +25,13 @@ export default new Vuex.Store({
     colorData: [],
     renderers: [],
     imgSource: '',
-    list: []
+    list: [],
+    imgList: [], // init with one empty
   },
   mutations: {
+    NEW_IMG_LIST (state, payload) {
+      state.imgList.push(payload)
+    },
     ADD_LIST (state, payload) {
       state.list.push(payload)
     },

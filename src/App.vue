@@ -1,22 +1,18 @@
 <template>
   <div id="app">
-    <RenderContainer />
+    <RenderContainer 
+      v-for="(img, index) in imgList"
+      :itemid="index"
+      :key="index" />
+    <button @click="NEW_IMG_LIST({id: index})">CREATE NEW</button>
+    
+    
     <div v-for="(item, index) in list" :key="index">
       {{ item }}
       <button @click="UPDATE_LIST_ITEM({ val: 'ok', ...item })"> update </button>
     </div>
     <button @click="ADD_LIST({id: getIdx(), name: 'ajsdfha'})">ADD</button>
-    <!-- <div class="container controls">
-      <ImageSource/>
-      <Settings />
-    </div>
-    <div 
-      class="container"
-      v-for="(render, index) in renderers" 
-      :key="index">
-      <Render       
-        :data="render"/>
-    </div> -->
+  
   </div>
 </template>
 
@@ -35,7 +31,8 @@ export default {
   computed: {
     ...mapGetters([
       'renderers', 
-      'list'
+      'list',
+      'imgList'
     ]),
     renderersReversed() {
       return this.renderers.reverse()
@@ -44,7 +41,8 @@ export default {
   methods: {
     ...mapMutations([
       'ADD_LIST',
-      'UPDATE_NAME'
+      'UPDATE_NAME',
+      'NEW_IMG_LIST'
     ]),
     ...mapActions([
       'UPDATE_LIST_ITEM'
@@ -53,6 +51,9 @@ export default {
       this.idx += 1
       return this.idx
     }
+  },
+  mounted() {
+    this.NEW_IMG_LIST({ id:1 })
   },
   data() {
     return {

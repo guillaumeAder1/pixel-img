@@ -20,7 +20,8 @@
 <script>
 import { 
   mapGetters, 
-  mapMutations 
+  mapMutations,
+  mapActions
 } from 'vuex'
 
 import { processImg } from '@/helpers/processing'
@@ -41,36 +42,24 @@ export default {
   },
   methods: {
     processFile(event) {
-      this.filePath = event.target.files[0]
+      const filePath = event.target.files[0]
       const reader = new FileReader()
-      reader.readAsDataURL(event.target.files[0]);
-      reader.onload = (e) => {
-        this.setImageSource(e.target.result)
-      }
-      console.log(this.filePath)
+      reader.readAsDataURL(filePath);
+      reader.onload = e => this.$emit('onImageSourceUpdate', e.target.result)
     },
     updateValue () {
-      this.update(this.value)
+      this.$emit('onSliderUpdate', parseInt(this.value))
     },
-    ...mapMutations({
-      update: 'UPDATE_CELL_NUMBER',
-      setColorData: 'SET_COLOR_DATA',
-      setImageSource: 'SET_IMG_SOURCE'
-    }),
     process() {
       const img = document.getElementById('sourceImg')
       const canvas = document.createElement('canvas');
-      const { colors } = processImg( img, canvas, this.cellHeight, this.cellWidth, this.numberCells)
+      const { colors } = processImg(img, canvas, this.cellHeight, this.cellWidth, this.numberCells)
+      this.ADD_NEW_RENDER(colors)
       this.setColorData({
         colors, 
         width: this.cellWidth * this.numberCells, 
         height: this.cellHeight * this.numberCells 
       })
-     
-      // for(let i in colors) {
-      //   c.fillStyle = `rgb(${colors[i][0]}, ${colors[i][1]}, ${colors[i][2]})`
-      //   c.fillRect(res[i].x, res[i].y, this.cellWidth, this.cellHeight)
-      // }
     }
   }
 }
