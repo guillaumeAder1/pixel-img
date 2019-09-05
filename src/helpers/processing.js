@@ -1,5 +1,7 @@
 
-export const processImg = (img, canvas, cellHeight, cellWidth, numberCells) => {
+export const processImg = (img, canvas, numberCells) => {
+  const cellWidth = img.width / numberCells
+  const cellHeight = img.height / numberCells
   canvas.width = img.width;
   canvas.height = img.height;
   canvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height);

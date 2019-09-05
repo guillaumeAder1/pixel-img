@@ -1,43 +1,37 @@
 <template>
-  <div class="main">
-    <img
-      ref="img"
-      id="sourceImg"
-      class="source-img"
-      width="100%"
-      height="100%"
-      @load="imgReady = true"
-      :src="imgSource || '../img/simple.jpg'" />
-    <ImageGrid v-if="imgReady"/>
-  </div>
+  
+  <img
+    ref="img"
+    id="sourceImg"
+    class="source-img"
+    width="100%"
+    height="100%"
+    @load="loaded"
+    :src="imgSource || '/img/icons/simple.jpg'" />
+  
 </template>
 
 <script>
 import {mapGetters} from 'vuex'
-import ImageGrid from '@/components/ImageGrid'
 export default {
-  components: {
-    ImageGrid
-  },
   name: 'ImageSource',
   props: {
-    msg: String
-  },
-  computed: {
-    ...mapGetters([
-      'imgSource'
-    ])
-  },
+    imgSource: String
+  },  
   data () {
     return {
       img: this.$refs.img,
       imgReady: false
     }
+  },
+  methods: {
+    loaded() {
+      this.$emit('onImageLoaded')
+    }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .source-img{
   object-fit: cover;
