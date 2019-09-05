@@ -24,11 +24,6 @@ export default {
   },
   mounted() {
     // this.refs.canvas.
-<<<<<<< HEAD
-    for(let i in this.colors) {
-      this.$refs.canvas.getContext('2d').fillStyle = `rgba(${this.colors[i][0]}, ${this.colors[i][1]}, ${this.colors[i][2]},  ${this.colors[i][3]})`
-      this.$refs.canvas.getContext('2d').fillRect(this.colors[i].x, this.colors[i].y, this.cellWidth, this.cellHeight)
-=======
     const ctx = this.$refs.canvas.getContext('2d')
     for(let i in this.data.colors) {
       ctx.fillStyle = `rgb(${this.data.colors[i][0]}, ${this.data.colors[i][1]}, ${this.data.colors[i][2]})`
@@ -49,7 +44,6 @@ export default {
   &:hover{
     a {
       display: block;
->>>>>>> b1682d91b6f3415e3bf14c056b2f835dcc864169
     }
   }
 }
