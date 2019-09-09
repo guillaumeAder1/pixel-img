@@ -50,7 +50,7 @@ export default {
       return this.idx
     },
     addFiltered(e) {
-      this.filtered.push(e)
+      this.filtered.push('')
     }
   },
   mounted() {

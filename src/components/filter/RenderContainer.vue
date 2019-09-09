@@ -1,6 +1,6 @@
 <template>
   <div class="container controls">
-    <div>
+    <div class="thumbnail">
       <canvas 
         v-if="canvasLoaded" 
         :width="canvasW"
@@ -100,6 +100,10 @@ export default {
 }
 </script>
 <style lang="scss">
+.thumbnail{
+  display: flex;
+  flex: 0 0 250px;
+}
 .slider-container{
   display: flex;
   flex: 1;
