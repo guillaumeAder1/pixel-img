@@ -4,15 +4,10 @@
       v-for="(img, index) in imgList"
       :itemid="index"
       :key="index" />
-    <button @click="NEW_IMG_LIST({id: index})">CREATE NEW</button>
-    
-    
-    <div v-for="(item, index) in list" :key="index">
-      {{ item }}
-      <button @click="UPDATE_LIST_ITEM({ val: 'ok', ...item })"> update </button>
-    </div>
-    <button @click="ADD_LIST({id: getIdx(), name: 'ajsdfha'})">ADD</button>
-  
+    <div>
+      <button @click="NEW_IMG_LIST({id: index})">NEW PIXEL</button>
+      <button>NEW FILTER</button>
+    </div>  
   </div>
 </template>
 

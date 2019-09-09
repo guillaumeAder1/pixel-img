@@ -1,13 +1,8 @@
 <template>
   <div class="el">
     <canvas 
-<<<<<<< HEAD
-      :width="numberCells * cellWidth"
-      :height="numberCells * cellHeight"
-=======
       :width="this.data.width"
       :height="this.data.height"
->>>>>>> b1682d91b6f3415e3bf14c056b2f835dcc864169
       ref="canvas" />
       <a class="download-btn" ref="btn" @click="download" download="img.png">download</a>
       <a class="remove-btn" @click="remove">delete</a>

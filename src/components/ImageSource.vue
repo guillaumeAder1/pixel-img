@@ -1,13 +1,18 @@
 <template>
-  
-  <img
-    ref="img"
-    id="sourceImg"
-    class="source-img"
-    width="100%"
-    height="100%"
-    @load="loaded"
-    :src="imgSource || '/img/icons/simple.jpg'" />
+  <div>
+    <img
+      ref="img"
+      id="sourceImg"
+      class="source-img"
+      width="100%"
+      height="100%"
+      @load="loaded"
+      :src="imgSource || '/img/icons/simple.jpg'" />
+      <!-- <canvas ref="canvas-source" 
+        width="100%"
+        height="100%" /> -->
+
+  </div>
   
 </template>
 
@@ -23,6 +28,11 @@ export default {
       imgReady: false
     }
   },
+  mounted() {
+    const ctx = this.$refs['canvas-source'].getContext('2d')
+    const img = this.$refs.img
+    ctx.drawImage(img, 0, 0)
+  },
   methods: {
     loaded() {
       this.$emit('onImageLoaded')
@@ -34,6 +44,7 @@ export default {
 <style scoped lang="scss">
 .source-img{
   object-fit: cover;
+  // display: none;
 }
 h3 {
   margin: 40px 0 0;
