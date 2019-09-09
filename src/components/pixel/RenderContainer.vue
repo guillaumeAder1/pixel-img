@@ -28,10 +28,10 @@
 </template>
 <script>
 import { processImg } from '@/helpers/processing'
-import ImageSource from '@/components/ImageSource'
-import ImageGrid from '@/components/ImageGrid'
-import Settings from '@/components/Settings'
-import Render from '@/components/Render'
+import ImageSource from '@/components/pixel/ImageSource'
+import ImageGrid from '@/components/pixel/ImageGrid'
+import Settings from '@/components/pixel/Settings'
+import Render from '@/components/pixel/Render'
 import { mapGetters } from 'vuex'
 export default {
   components: {

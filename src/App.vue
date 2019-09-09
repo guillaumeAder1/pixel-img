@@ -4,8 +4,10 @@
       v-for="(img, index) in imgList"
       :itemid="index"
       :key="index" />
-
-
+    <FilterContainer 
+      v-for="item in 1"
+      :key="item"
+      />
       <div>
         <button @click="NEW_IMG_LIST({id: index})">NEW PIXEL</button>
         <button>NEW FILTER</button>
@@ -14,13 +16,18 @@
 </template>
 
 <script>
-import RenderContainer from '@/components/RenderContainer.vue'
+// import ImageSource from '@/components/ImageSource.vue'
+// import Settings from '@/components/Settings.vue'
+// import Render from '@/components/Render.vue'
+import RenderContainer from '@/components/pixel/RenderContainer'
+import FilterContainer from '@/components/filter/RenderContainer'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'app',
   components: {
-    RenderContainer
+    RenderContainer,
+    FilterContainer
   },
   computed: {
     ...mapGetters([
