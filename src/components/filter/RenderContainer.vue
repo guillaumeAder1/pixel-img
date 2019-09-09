@@ -13,10 +13,28 @@
       min="0" 
       max="100" 
       ref="blur" />
+
+    <template 
+      v-for="(filter) in filters">
+      <input 
+        type="range"
+        :min="filter.min"
+        :max="filter.max"
+        v-model="dataFilter[filter.label]"
+        @input="updateFilter(filter.label)"
+        :key="filter.label"
+        />
+        {{filter.label}}
+    </template>
+
   </div>
 </template>
 <script>
-
+import { filters } from './filter'
+const _dataFilter = []
+filters.forEach(e => {
+  _dataFilter[e.label] = e.default
+})
 export default {
   components: {
   },
@@ -28,7 +46,9 @@ export default {
       canvasW: 200,
       canvasH: 186,
       blur: 0,
-      img: null
+      img: null,
+      filters: filters,
+      dataFilter: {..._dataFilter}
     }    
   },
   computed: {
@@ -54,6 +74,18 @@ export default {
         };
         reader.readAsDataURL(file);
       }
+    },
+    updateFilter (label) {
+      console.log(this.dataFilter[label], label)
+      this.$refs.filterCanvas.getContext('2d').clearRect(0, 0, this.img.width, this.img.height);
+      const values = this.filters.map(e => {
+        return {
+          val: e.template.replace('{0}', this.dataFilter[e.label])
+        }
+      })
+      console.log(values.map(e => e.val).join(' '))
+      this.$refs.filterCanvas.getContext('2d').filter = values.map(e => e.val).join(' ')
+      this.$refs.filterCanvas.getContext('2d').drawImage(this.img, 0, 0, this.img.width, this.img.height)
     },
     blurFilter() {
       console.log(this.blur)
