@@ -6,13 +6,13 @@
       :height="canvasH"
       ref="filterCanvas" />
     <input type="file" ref="file" @change="loadImage" />
-    <input 
+    <!-- <input 
       @input="blurFilter" 
       v-model="blur"
       type="range" 
       min="0" 
       max="100" 
-      ref="blur" />
+      ref="blur" /> -->
 
     <template 
       v-for="(filter) in filters">
@@ -49,7 +49,7 @@ export default {
       blur: 0,
       img: null,
       filters: filters,
-      dataFilter: {..._dataFilter}
+      dataFilter: _dataFilter
     }    
   },
   computed: {
