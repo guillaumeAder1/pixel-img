@@ -20,6 +20,7 @@
         type="range"
         :min="filter.min"
         :max="filter.max"
+        orient="vertical"
         v-model="dataFilter[filter.label]"
         @input="updateFilter(filter.label)"
         :key="filter.label"
@@ -98,36 +99,35 @@ export default {
 }
 </script>
 <style lang="scss">
-
-
-.imageSource{ position: relative; }
-  .imageGrid {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-  }
-  div.container{
-    // border: 1px solid red;
-    margin: 15px;
-    flex: 1;
-    background: rgb(242, 242, 242);
-    border:1px solid  rgb(223, 223, 223);
-    padding: 15px;
-    &.controls{
-      display: flex;
-      div.imageSource{
-        flex: 0 0 250px;
-      }
+div.container{
+  // border: 1px solid red;
+  margin: 15px;
+  flex: 1;
+  background: rgb(242, 242, 242);
+  border:1px solid  rgb(223, 223, 223);
+  padding: 15px;
+  &.controls{
+    display: flex;
+    div.imageSource{
+      flex: 0 0 250px;
     }
-   .render-container {   
+  }
+  .render-container {   
+    display: flex;
+    flex-direction: row;
+    
+    div{
       display: flex;
-      flex-direction: row;
-      
-      div{
-        display: flex;
-        margin: 0 5px;
-      }
-    } 
-  } 
+      margin: 0 5px;
+    }
+  }
+  input[type=range][orient=vertical]{
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    width: 8px;
+    height: 175px;
+    padding: 0 5px;
+} 
+}
+  
 </style>
