@@ -1,40 +1,48 @@
 <template>
   <div class="container controls">
-    <canvas 
-      v-if="canvasLoaded" 
-      :width="canvasW"
-      :height="canvasH"
-      ref="filterCanvas" />
-    <input type="file" ref="file" @change="loadImage" />
-    <!-- <input 
-      @input="blurFilter" 
-      v-model="blur"
-      type="range" 
-      min="0" 
-      max="100" 
-      ref="blur" /> -->
+    <div>
+      <canvas 
+        v-if="canvasLoaded" 
+        :width="canvasW"
+        :height="canvasH"
+        ref="filterCanvas" />
+    </div>
+    
+    <div>
+      <input type="file" ref="file" @change="loadImage" />
+    </div>
 
-    <template 
-      v-for="(filter) in filters">
-      <input 
-        type="range"
-        :min="filter.min"
-        :max="filter.max"
-        orient="vertical"
-        v-model="dataFilter[filter.label]"
-        @input="updateFilter(filter.label)"
-        :key="filter.label"
-        />
-        {{filter.label}}
-    </template>
+    <div 
+      class="slider-container"
+      v-if="canvasLoaded">
+      <template v-for="(filter) in filters">
+        <div 
+          class="slider"
+          :key="filter.label">
+          <div>
+            <input 
+              type="range"
+              :min="filter.min"
+              :max="filter.max"
+              orient="vertical"
+              v-model="dataFilter[filter.label]"
+              @input="updateFilter(filter.label)"
+              />
+          </div>
+          <div> 
+            {{filter.label}}
+          </div>
+        </div>
+      </template>
+    </div>
 
   </div>
 </template>
 <script>
 import { filters } from './filter'
-const _dataFilter = []
+const dataFilter = []
 filters.forEach(e => {
-  _dataFilter[e.label] = e.default
+  dataFilter[e.label] = e.default
 })
 export default {
   components: {
@@ -43,13 +51,12 @@ export default {
   },
   data () {
     return {
-      canvasLoaded: true,
+      canvasLoaded: false,
       canvasW: 200,
       canvasH: 186,
-      blur: 0,
       img: null,
       filters: filters,
-      dataFilter: _dataFilter
+      dataFilter: dataFilter
     }    
   },
   computed: {
@@ -61,6 +68,7 @@ export default {
         var reader = new FileReader();
         reader.onload = (e) => {
           const img = new Image(this.canvasW, this.canvasH)
+          this.canvasLoaded = true  
           img.onload = () => {
             const canvas = this.$refs.filterCanvas
             const ctx = canvas.getContext('2d')
@@ -71,27 +79,20 @@ export default {
           }
           img.src =  e.target.result
           this.img = img
-          document.body.appendChild(img);
+          // document.body.appendChild(img);
         };
         reader.readAsDataURL(file);
       }
     },
     updateFilter (label) {
-      console.log(this.dataFilter[label], label)
       this.$refs.filterCanvas.getContext('2d').clearRect(0, 0, this.img.width, this.img.height);
       const values = this.filters.map(e => {
         return {
           val: e.template.replace('{0}', this.dataFilter[e.label])
         }
       })
-      console.log(values.map(e => e.val).join(' '))
+      // console.log(values.map(e => e.val).join(' '))
       this.$refs.filterCanvas.getContext('2d').filter = values.map(e => e.val).join(' ')
-      this.$refs.filterCanvas.getContext('2d').drawImage(this.img, 0, 0, this.img.width, this.img.height)
-    },
-    blurFilter() {
-      console.log(this.blur)
-      this.$refs.filterCanvas.getContext('2d').clearRect(0, 0, this.img.width, this.img.height);
-      this.$refs.filterCanvas.getContext('2d').filter = `blur(${this.blur}px)`
       this.$refs.filterCanvas.getContext('2d').drawImage(this.img, 0, 0, this.img.width, this.img.height)
     }
   },
@@ -99,6 +100,19 @@ export default {
 }
 </script>
 <style lang="scss">
+.slider-container{
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+  div.slider{
+    flex: 0 0 120px;
+    // border: 1px solid red;
+    > div:nth-child(2) {
+      // border: 1px solid blue;
+      background: rgb(215, 215, 215);
+    }
+  }
+}
 div.container{
   // border: 1px solid red;
   margin: 15px;

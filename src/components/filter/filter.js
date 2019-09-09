@@ -45,7 +45,7 @@ export const filters = [
     type: 'percentage',
     min: 0,
     max: 100,
-    default: 0
+    default: 100
   },
   {
     template: 'opacity({0}%)',

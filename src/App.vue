@@ -5,12 +5,12 @@
       :itemid="index"
       :key="index" />
     <FilterContainer 
-      v-for="item in 1"
+      v-for="item in filtered"
       :key="item"
       />
       <div>
         <button @click="NEW_IMG_LIST({id: index})">NEW PIXEL</button>
-        <button>NEW FILTER</button>
+        <button @click="addFiltered">NEW FILTER</button>
       </div>
   </div>
 </template>
@@ -48,6 +48,9 @@ export default {
     getIdx() {
       this.idx += 1
       return this.idx
+    },
+    addFiltered(e) {
+      this.filtered.push(e)
     }
   },
   mounted() {
@@ -57,7 +60,8 @@ export default {
     return {
       drawer: false,
       direction: 'rtl',
-      idx:1
+      idx:1,
+      filtered: []
     };
   }
 }
