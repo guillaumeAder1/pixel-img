@@ -19,8 +19,9 @@
     <div class="render-container">
       <Render 
         v-for="(render, index) in renderList"
-        :key="index"
+        :key="render.id"
         :data="render"
+        @delete="deleteRender(render, index)"
       />
     </div>
   </div>
@@ -77,9 +78,13 @@ export default {
         colors,
         width: img.width, 
         height: img.height,
-        nbrCells: this.nbrCells
+        nbrCells: this.nbrCells,
+        id: this.nbrCells + Math.floor((Math.random()*10000))
       })
-
+    },
+    deleteRender(render, index) {
+      // this.renderList.splice(index, 1)
+      this.$delete(this.renderList, index)
     }
   },
   name: 'RenderContainer'

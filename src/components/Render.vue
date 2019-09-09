@@ -10,6 +10,7 @@
 >>>>>>> b1682d91b6f3415e3bf14c056b2f835dcc864169
       ref="canvas" />
       <a class="download-btn" ref="btn" @click="download" download="img.png">download</a>
+      <a class="remove-btn" @click="remove">delete</a>
   </div>
 </template>
 <script>
@@ -34,6 +35,9 @@ export default {
     download () {
       const data = this.$refs.canvas.toDataURL('image/jpg')
       this.$refs.btn.href = data
+    },
+    remove() {
+      this.$emit('delete')
     }
   }
 }
@@ -47,14 +51,18 @@ export default {
     }
   }
 }
-a.download-btn{
+a{
   cursor: pointer;
   display: none;
   position: absolute;
   bottom: 0;
   background: white;
   padding: 5px;
-  margin: 0 auto;
+  &.download-btn{
+    margin: 0 auto;
+    right: 0;
+  }
+  &.remove-btn{margin: 0 auto;}
 }
 
 </style>

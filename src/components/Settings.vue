@@ -19,9 +19,7 @@
 </template>
 <script>
 import { 
-  mapGetters, 
-  mapMutations,
-  mapActions
+  mapGetters
 } from 'vuex'
 
 export default {

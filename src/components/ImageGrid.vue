@@ -22,7 +22,6 @@
   </div>
 </template>
 <script>
-import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'ImageGrid',

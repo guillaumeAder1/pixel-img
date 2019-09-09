@@ -33,10 +33,7 @@ export default {
       'renderers', 
       'list',
       'imgList'
-    ]),
-    renderersReversed() {
-      return this.renderers.reverse()
-    }
+    ])
   },
   methods: {
     ...mapMutations([
